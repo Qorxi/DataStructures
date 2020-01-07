@@ -1,0 +1,13 @@
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.exe.config
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.exe
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.pdb
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.csprojAssemblyReference.cache
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.csproj.CoreCompileInputs.cache
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.exe
+C:\Users\Qorxmaz\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.pdb
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.exe.config
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.exe
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\bin\Debug\DataStructures.pdb
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.csprojAssemblyReference.cache
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.exe
+C:\Users\Gorkhmaz Mahharamov\source\repos\DataStructures\DataStructures\obj\Debug\DataStructures.pdb
