@@ -155,7 +155,6 @@ namespace DataStructures
 
             #endregion  Stack 
 
-
             Console.ReadKey();
         }
     }
