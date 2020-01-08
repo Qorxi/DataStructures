@@ -10,7 +10,7 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
-            #region      List data structure
+            #region      List Data structure
 
             //List<int> arr = new List<int>();
             //Console.WriteLine("ArrayWork is capacity = " + arr.Capacity + " elements count " + arr.Count);
