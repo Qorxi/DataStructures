@@ -135,32 +135,207 @@ namespace DataStructures
 
             #region     Stack structure(Linkedlist version)
 
-            var stc = new LinkedStack();
-            stc.Push(10);
-            stc.Push(6);
-            stc.Push(90);
-            stc.Print();
-            Console.WriteLine();
-            Console.WriteLine(stc.Top);
-            stc.Pop();
-            stc.Pop();
+            //var stc = new LinkedStack();
+            //stc.Push(10);
+            //stc.Push(6);
+            //stc.Push(90);
+            //stc.Print();
+            //Console.WriteLine();
+            //Console.WriteLine(stc.Top);
+            //stc.Pop();
+            //stc.Pop();
 
-            stc.Push(-45);
-            stc.Print();
-            Console.WriteLine(stc.Top);
+            //stc.Push(-45);
+            //stc.Print();
+            //Console.WriteLine(stc.Top);
 
 
 
-        #endregion  Stack structure(Linkedlist version)
+            #endregion  Stack structure(Linkedlist version)
 
             #endregion  Stack 
+
+            #region      Queue 
+
+            #region      Array implementation
+
+            //QueueStructure que = new QueueStructure(4);
+            //que.Enqueue(10);
+            //que.Enqueue(20);
+            //que.Enqueue(30);
+            //que.Enqueue(40);
+            //que.Dequeue();
+            //que.Dequeue();
+            //que.Dequeue();
+            ////Console.WriteLine(que.Front());
+            //que.Enqueue(50);
+            //que.Enqueue(60);
+            //Console.WriteLine(que.Dequeue());
+            ////Console.WriteLine(que.Front());
+            //Console.WriteLine(que.Dequeue());
+            //Console.WriteLine(que.Dequeue());
+
+
+            //Console.WriteLine(que.Dequeue());
+
+            #endregion   Array implementation
+
+            #region      LinkedList implementation
+
+            #endregion   LinkedList implementation
+
+            #endregion  End of paritito Queue 
+
+
+
+
 
             Console.ReadKey();
         }
     }
 
+    #region     Queue structure
+    /* Queue structure front and rear. Front ve rear başlanğıc qiymetleri ilk zaman -1 beraberdir.
+     * Front növbenin başlandığı hissedir, növbe ilk element əlavə edildiyi zaman front hemin index
+     * alır qiymetini yeni increment ve 1 olur rear her element əlavə edildiyi zaman index ona uyğun
+     * olaraq bir qiymət artım göstərir.Hər element lavə edilsin vı rear qiymət artsın silinmə zamanı
+     * front qitməti bir artırılır sağa sürüşdürmə edilir, rear isə öz yerinde qalır.
+     * Uyğun əməliyyatlar zamanl massiv front yeni başlanğıcdan silinmə olduğuna görə
+     * elementlər boşluq yaranır bun qarşısına əsasən circylar array anlayışı istifadə olunur
+     * yəni next pos element element_index % array.length edilerek tapılır.Rear son indexe
+     * qədər gəlib isə bu zaman rear qiymət artır maasiv ölçüsünden eve % mod alma zamanı
+     * index 0 qayıtdığından başdaj  dequqe olunan elementlerə yeniləri əlavə edilir.
+     * İmplementasiya aşağıdakı kimidir.
+     */
+    #region      Array implementation
+    public class QueueStructure
+    {
+        // local array
+        private int[] array;
+
+        /// <summary>
+        /// Local number for less then zeor num (queue tail)
+        /// </summary>
+        private int rear = -1;
+
+        /// <summary>
+        /// Local number for lesst then zeor (Queue head point)
+        /// </summary>
+        private int front = -1;
+
+
+        // Array size
+        private int N;
+
+
+        /// <summary>
+        /// Constructor is strcute queue class
+        /// </summary>
+        /// <param name="arraySize"></param>
+        public QueueStructure(int arraySize)
+        {
+            // ser local array to size
+            array = new int[arraySize];
+            N = array.Length;
+        }
+
+        /// <summary>
+        /// Enqueue method is 
+        /// </summary>
+        /// <param name="data"> whatever integer </param>
+        public void Enqueue(int data)
+        {
+            // Array is full
+            if ((rear + 1) % N == front)
+            {
+                Console.WriteLine("Queue is fulled");
+                return;
+            }
+
+            // If first element pushed to queue
+            if (this.front == -1 && this.rear == -1)
+            {
+                ++front;
+            }
+
+
+            // Settin element to queue
+            array[(rear++ + 1) % N] = data;
+        }
+
+
+        /// <summary>
+        /// Dequeue function element remove the array first left,
+        /// and rear and front equal -1 then return throw exception
+        /// Element rear great then N array lenth and rear mode length equal fron element index
+        /// then element rear and front set -1 else condition fron circylar increment set value
+        /// return temp remove element
+        /// </summary>
+        /// <returns></returns>
+        public int Dequeue()
+        {
+            // rear and frot eqeual -1 queue equl 
+            if (this.rear == -1 && this.front == -1)
+            {
+                throw new Exception("Queue is empty, dont dequque element from empty queue");
+            }
+
+            // Get removed element from array temp
+            var temp = array[front];
+
+            // array remove element set default elementy
+            array[front] = default(int);
+
+            // condition removed element first .. range array and circylar condition return -1 both 
+            if (this.rear == this.front || (this.rear > N && ((this.rear) % N) == this.front))
+            {
+                this.rear = this.front = -1;
+            }
+            else
+            {
+                // front circylar increment
+                front = (front + 1) % N;
+            }
+
+            
+            return temp;
+        }
+
+        /// <summary>
+        /// Empty property queue is empty or full
+        /// </summary>
+        public bool IsEmpty
+        {
+            get
+            {
+                if (this.rear == - 1 && this.front ==-1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Front method return queue start element
+        /// </summary>
+        /// <returns></returns>
+        public int Front()
+        {
+            return array[front];
+        }
+
+    }
+    #endregion   End of part
+
+    #region      LinkedList implementation
+
+    #endregion   End of part
+
+    #endregion  Queue structure
+
     #region      Stack structure
-    
+
     #region      Version 1(Array implemented)
     public class StackArray
     {
