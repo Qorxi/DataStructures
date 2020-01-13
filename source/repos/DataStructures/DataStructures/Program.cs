@@ -10,6 +10,10 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
+            #region       Data structure implement(example part) (C#)
+
+            #region       Linear data structures
+
             #region      List Data structure
 
             //List<int> arr = new List<int>();
@@ -182,19 +186,46 @@ namespace DataStructures
 
             #region      LinkedList implementation
 
+            //QueueLinkedinStructure queueLink = new QueueLinkedinStructure();
+            //queueLink.Enqueue(10);
+            //queueLink.Dequeue();
+            //queueLink.Dequeue();
+
+            //// list array
+            //queueLink.Dequeue();
+
+
+
+
             #endregion   LinkedList implementation
 
             #endregion  End of paritito Queue 
 
+            #endregion    End of Linear data structures
+
+            #region       Tree, traversal, graph data structures
 
 
+
+
+            #endregion    End of Tree, traversal, graph data structures
+            #endregion
 
 
             Console.ReadKey();
         }
     }
 
+
+    #region      Data structure implement(implementattions part) (C#) [...]
+
+    #region      Linear data structures implamenetation part   [...]
+
     #region     Queue structure
+
+    #region      Array implementation
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Array implementation structure algorithm @@@@@@@@@@@@@@@@@@@@@@@@@@@@
     /* Queue structure front and rear. Front ve rear başlanğıc qiymetleri ilk zaman -1 beraberdir.
      * Front növbenin başlandığı hissedir, növbe ilk element əlavə edildiyi zaman front hemin index
      * alır qiymetini yeni increment ve 1 olur rear her element əlavə edildiyi zaman index ona uyğun
@@ -207,7 +238,7 @@ namespace DataStructures
      * index 0 qayıtdığından başdaj  dequqe olunan elementlerə yeniləri əlavə edilir.
      * İmplementasiya aşağıdakı kimidir.
      */
-    #region      Array implementation
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public class QueueStructure
     {
         // local array
@@ -297,7 +328,7 @@ namespace DataStructures
                 front = (front + 1) % N;
             }
 
-            
+
             return temp;
         }
 
@@ -308,7 +339,8 @@ namespace DataStructures
         {
             get
             {
-                if (this.rear == - 1 && this.front ==-1)
+                // return queue is empty nothing added element
+                if (this.rear == -1 && this.front == -1)
                 {
                     return true;
                 }
@@ -322,13 +354,131 @@ namespace DataStructures
         /// <returns></returns>
         public int Front()
         {
+            // return queue start at index'th element
             return array[front];
         }
 
     }
+
     #endregion   End of part
 
     #region      LinkedList implementation
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Algortih quque implement to linkedlist @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    /* Elementləri əlavə etmək üçün fron və rear adlı iki dəyişən istifadə edilir. Front anlam laraq linkedList
+     * normal qaydalardan bəlli olan list head olaraq anlaşılmalıdır. Queue implementasiya time complexity 
+     * Big(O(1)) olamalıdır. Normal qayidə ilə implementasiya zamanı linkedlist 1 element olduğundan yeni emelent
+     * head əlavə edilrkən Big((1)) və remove yəni dequque() method zamanı O(1) time complexity bırabır olur. Ancaq
+     * listə yeni ele element əlav etmək üçün normal qaydalar head node istifadə edərək,son elementə qədər getməli
+     * (bu iteariya və ya dovr quraraq mümkündür) və sondakı elemet=nt next pointerına yeni vahid əlavə edilinir.Bu
+     * əməliyyat zamanı Big(O(n)) baş veriri bu queueb implementasiya zamanı aşdıqdan dolayı linkedList yeni implementasiya
+     * yəni quyruq(tail) və ya rear saxlanılacaq, fron linkedList head nodu rear isə itereasoya elementi olacaq bu zaman
+     * bütün element əəliyyatlar enqueue, dequque time complexity = Big(O(1)) -olur */
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    public class QueueLinkedinStructure
+    {
+
+        // Front start element or list head root
+        private LinkNode front;
+
+        // Element rear iteration
+        private LinkNode rear;
+
+        private LinkNode returnElement;
+
+        /// <summary>
+        /// Enqueue method add element to 
+        /// </summary>
+        /// <param name="data"></param>
+        public void Enqueue(int data)
+        {
+            // Get new node
+            var node = GetNode(data);
+
+            // First element added to list
+            if (this.rear == null && this.front == null)
+            {
+                this.front = this.rear = node;
+                return;
+            }
+
+            // Addd new element
+            this.rear.Next = node;
+            this.rear = node;
+        }
+
+        /// <summary>
+        /// Dequeue method remove queue element and return removed element
+        /// </summary>
+        /// <returns></returns>
+        public LinkNode Dequeue()
+        {
+            // rear and front equal null then queue is empty
+            if (this.front == null && this.rear == null)
+            {
+                throw new Exception("Queue is empty");
+            }
+
+            // temp removed element
+            returnElement = this.front;
+
+            // removed element next is null then rear equal null
+            if (returnElement.Next == null)
+            {
+                this.rear = null;
+            }
+
+            // removed head front element next pointer after element
+            this.front = this.front.Next;
+
+            // return removed element
+            return returnElement;
+        }
+
+
+        /// <summary>
+        /// Front element return property 
+        /// </summary>
+        public LinkNode Front
+        {
+            get
+            {
+                // Front element is equal null then property return null
+                if (this.front == null)
+                {
+                    return null;
+                }
+
+                return this.front;
+            }
+        }
+
+
+        /// <summary>
+        /// Property queue is empty or fulled 
+        /// </summary>
+        public bool Empty
+        {
+            get
+            {
+                return this.rear == null && this.front == null ? true : false;
+            }
+        }
+
+
+        /// <summary>
+        /// Method retur new node 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private LinkNode GetNode(int data)
+        {
+            // Get node
+            var node = new LinkNode(data);
+            return node;
+        }
+    }
+
+
 
     #endregion   End of part
 
@@ -430,6 +580,7 @@ namespace DataStructures
     #region      Version 2(Linked list implementation)
     public class LinkedStack
     {
+
         private StackNode _top;
 
         public LinkedStack()
@@ -494,8 +645,6 @@ namespace DataStructures
         }
 
 
-
-
         private class StackNode
         {
             public int Data { get; set; }
@@ -517,7 +666,7 @@ namespace DataStructures
                 }
             }
         }
-  
+
     }
     #endregion   Version 2(Linked list implementation)
 
@@ -542,7 +691,7 @@ namespace DataStructures
         /// <summary>
         /// Previus DoubleNode this class model
         /// </summary>
-        public DoubleNode Previus{ get; set; }
+        public DoubleNode Previus { get; set; }
 
         /// <summary>
         ///  Constructor is the
@@ -670,7 +819,7 @@ namespace DataStructures
             var node = this.Head;
 
             // Whiile loopig and get last node
-            while(node.Next != null)
+            while (node.Next != null)
             {
                 node = node.Next;
             }
@@ -979,14 +1128,14 @@ namespace DataStructures
 
             ReverseElement(node.Next);
 
-            var next =  node.Next;
+            var next = node.Next;
 
             next.Next = node;
 
             node.Next = null;
         }
 
-             
+
     }
 
     #endregion   Linked list data structure
@@ -1047,5 +1196,12 @@ namespace DataStructures
             inits[count] = default(int);
         }
     }
+
     #endregion  ArrayWork link
+
+    #endregion   End of Linear data structures implamenetation part  [...]
+
+    #endregion   End of Data structure implement(implementattions part) (C#)[...]
+
+
 }
