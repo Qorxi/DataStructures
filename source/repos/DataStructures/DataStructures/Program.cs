@@ -216,6 +216,8 @@ namespace DataStructures
 
             string exitMessage = string.Empty;
 
+            /* @@@@@@@@@@@@@@@@@@@ This approach for iterative search @@@@@@@@@@@@@@@@@@
+
             while(string.IsNullOrWhiteSpace(exitMessage))
             {
                 var num = Convert.ToInt32(Console.ReadLine());
@@ -229,7 +231,19 @@ namespace DataStructures
             {
                 Console.WriteLine(bnTree.Search(bnTree.RootNode, Convert.ToInt32(Console.ReadLine())) ? "Found" : "NotFound");
             }
-            
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@ End of part @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+
+            /*@@@@@@@@@@@@@ Recursive variant method example search method @@@@@@@@@@@@@*/
+
+            while (string.IsNullOrWhiteSpace(exitMessage))
+            {
+                var num = Convert.ToInt32(Console.ReadLine());
+                bnTree.SearcIterativ(bnTree.RootNode, num);
+                Console.WriteLine("Are you sure exit ? ");
+                exitMessage = Console.ReadLine();
+            }
+
+
 
 
             #endregion    Binary tree
@@ -1363,12 +1377,12 @@ namespace DataStructures
                 return true;
             }
             // Node data is lesst then data then rotation root direction to left node
-            else if(node.Data > data)
+            else if (node.Data > data)
             {
                 return Search(node.LeftNode, data);
             }
             // Node data is great then data rotation root direction to right node
-            else if (node.Data <  data)
+            else if (node.Data < data)
             {
                 return Search(node.RightNode, data);
             }
@@ -1379,7 +1393,39 @@ namespace DataStructures
             }
         }
 
-        
+
+        public void SearcIterativ(BinaryNode node, int data)
+        {
+            if (node == null)
+            {
+                Console.WriteLine($"{data}- is not found");
+                return;
+            }
+
+            else if (node.Data == data)
+            {
+                Console.WriteLine($"{data} - is found at tree");
+                return;
+            }
+
+            else if (node.Data > data)
+            {
+                SearcIterativ(node.LeftNode, data);
+            }
+
+            else if (node.Data < data)
+            {
+                SearcIterativ(node.RightNode, data);
+            }
+
+            else
+            {
+                Console.WriteLine("Not found");
+                return;
+            }
+        }
+
+
         /// <summary>
         /// Get create new node
         /// </summary>
