@@ -10,7 +10,7 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
-            #region       Data structure implement(example part) (C#)
+            #region       Data structure implement(example part) (C#) [...]
 
             #region       Linear data structures
 
@@ -205,11 +205,38 @@ namespace DataStructures
 
             #region       Tree, traversal, graph data structures
 
+            #region       Binary tree
+
+            BinarySearchTree bnTree = new BinarySearchTree();
+            bnTree.Insert(15);
+            bnTree.Insert(10);
+            bnTree.Insert(20);
+            bnTree.Insert(25);
+            bnTree.Insert(18);
+
+            string exitMessage = string.Empty;
+
+            while(string.IsNullOrWhiteSpace(exitMessage))
+            {
+                var num = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(bnTree.Search(bnTree.RootNode, num) ? "Found" : "NotFound");
+                Console.WriteLine("Are you sure exit ? ");
+                exitMessage = Console.ReadLine();
+            }
 
 
+            if (string.IsNullOrWhiteSpace(exitMessage))
+            {
+                Console.WriteLine(bnTree.Search(bnTree.RootNode, Convert.ToInt32(Console.ReadLine())) ? "Found" : "NotFound");
+            }
+            
+
+
+            #endregion    Binary tree
 
             #endregion    End of Tree, traversal, graph data structures
-            #endregion
+
+            #endregion    End of Data structure implement(example part) (C#) [...]
 
 
             Console.ReadKey();
@@ -1202,6 +1229,177 @@ namespace DataStructures
     #endregion   End of Linear data structures implamenetation part  [...]
 
     #endregion   End of Data structure implement(implementattions part) (C#)[...]
+
+    #region      NoneLinear Data Structure [...]
+
+    #region      Binary Tree
+
+    /// <summary>
+    /// Binary tree Node
+    /// </summary>
+    public class BinaryNode
+    {
+        /// <summary>
+        /// Data integer storaged 
+        /// </summary>
+        public int Data { get; set; }
+
+        /// <summary>
+        /// Left node storaged, left tree nodes
+        /// </summary>
+        public BinaryNode LeftNode { get; set; }
+
+        /// <summary>
+        /// Right node storaged, right tree nodes
+        /// </summary>
+        public BinaryNode RightNode { get; set; }
+
+        /// <summary>
+        /// Constrauctor TreeNoe clas
+        /// </summary>
+        /// <param name="Data"></param>
+        public BinaryNode(int Data)
+        {
+            // Data node 
+            this.Data = Data;
+            // Left and Right tree self nodes
+            this.LeftNode = null;
+            this.RightNode = null;
+        }
+    }
+
+
+    /// <summary>
+    ///Class storaged binary tree implementattion methods
+    /// </summary>
+    public class BinarySearchTree
+    {
+        // Tree root node
+        public BinaryNode RootNode = null;
+
+        /// <summary>
+        /// Class default constructor
+        /// </summary>
+        public BinarySearchTree()
+        {
+
+        }
+
+
+        /// <summary>
+        /// Insert data to binary tree with iterativ method
+        /// </summary>
+        /// <param name="data"></param>
+        public void Insert(int data)
+        {
+            // Root node is null
+            if (this.RootNode == null)
+            {
+                this.RootNode = GetNewNode(data);
+                return;
+            }
+
+            // Current node is equal root node
+            var current = this.RootNode;
+            // Added is falses
+            bool IsAdded = false;
+
+            // Recursice loop is not added
+            while (!IsAdded)
+            {
+                // Cuurent node data greate then data is num match left node
+                if (current.Data > data)
+                {
+                    // Current is not a left node
+                    if (current.LeftNode == null)
+                    {
+                        // Added left node
+                        current.LeftNode = GetNewNode(data);
+                        // Added is true
+                        IsAdded = !IsAdded;
+                    }
+                    else
+                    {
+                        // Added is not change node to left 
+                        current = current.LeftNode;
+                    }
+                }
+                else
+                {
+                    // Cuurent node is match right node 
+                    if (current.RightNode == null)
+                    {
+                        // This node is right node equal null then set right nide
+                        current.RightNode = GetNewNode(data);
+                        // Added element is added set trues
+                        IsAdded = !IsAdded;
+                    }
+                    else
+                    {
+                        // Change rotation to right node
+                        current = current.RightNode;
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Search in binary tree
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool Search(BinaryNode node, int data)
+        {
+            // Node is null then false
+            if (node == null)
+            {
+                return false;
+            }
+            // Node data is equal search node data then return true
+            else if (node.Data == data)
+            {
+                return true;
+            }
+            // Node data is lesst then data then rotation root direction to left node
+            else if(node.Data > data)
+            {
+                return Search(node.LeftNode, data);
+            }
+            // Node data is great then data rotation root direction to right node
+            else if (node.Data <  data)
+            {
+                return Search(node.RightNode, data);
+            }
+            // This constitin return false
+            else
+            {
+                return false;
+            }
+        }
+
+        
+        /// <summary>
+        /// Get create new node
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private BinaryNode GetNewNode(int data)
+        {
+            // Create new node
+            var newNode = new BinaryNode(data);
+            return newNode;
+        }
+
+
+    }
+
+
+
+    #endregion   End of Binary tree
+
+    #endregion   NoneLinear Data Structure [...]
 
 
 }
