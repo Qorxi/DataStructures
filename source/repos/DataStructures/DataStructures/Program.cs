@@ -235,17 +235,6 @@ namespace DataStructures
 
             /*@@@@@@@@@@@@@ Recursive variant method example search method @@@@@@@@@@@@@*/
 
-            while (string.IsNullOrWhiteSpace(exitMessage))
-            {
-                var num = Convert.ToInt32(Console.ReadLine());
-                bnTree.SearcIterativ(bnTree.RootNode, num);
-                Console.WriteLine("Are you sure exit ? ");
-                exitMessage = Console.ReadLine();
-            }
-
-
-
-
             #endregion    Binary tree
 
             #endregion    End of Tree, traversal, graph data structures
@@ -1390,38 +1379,6 @@ namespace DataStructures
             else
             {
                 return false;
-            }
-        }
-
-
-        public void SearcIterativ(BinaryNode node, int data)
-        {
-            if (node == null)
-            {
-                Console.WriteLine($"{data}- is not found");
-                return;
-            }
-
-            else if (node.Data == data)
-            {
-                Console.WriteLine($"{data} - is found at tree");
-                return;
-            }
-
-            else if (node.Data > data)
-            {
-                SearcIterativ(node.LeftNode, data);
-            }
-
-            else if (node.Data < data)
-            {
-                SearcIterativ(node.RightNode, data);
-            }
-
-            else
-            {
-                Console.WriteLine("Not found");
-                return;
             }
         }
 
