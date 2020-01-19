@@ -208,13 +208,17 @@ namespace DataStructures
             #region       Binary tree
 
             BinarySearchTree bnTree = new BinarySearchTree();
-            bnTree.Insert(15);
-            bnTree.Insert(10);
-            bnTree.Insert(20);
-            bnTree.Insert(25);
-            bnTree.Insert(18);
+            bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 15);
+            bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 10);
+            bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 20);
 
-            string exitMessage = string.Empty;
+            bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 25);
+            bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 30);
+
+
+            Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
+
+
 
             /* @@@@@@@@@@@@@@@@@@@ This approach for iterative search @@@@@@@@@@@@@@@@@@
 
@@ -1290,6 +1294,31 @@ namespace DataStructures
 
 
         /// <summary>
+        /// Binary tree insert using recursion method
+        /// </summary>
+        /// <param name="node">new Node</param>
+        /// <param name="data">input parametr</param>
+        /// <returns></returns>
+        public BinaryNode InsertRecursion(BinaryNode node, int data)
+        {
+            if (node == null)
+            {
+                node = GetNewNode(data);
+            }
+
+            else if (node.Data > data)
+            {
+                node.LeftNode = InsertRecursion(node.LeftNode, data);
+            }
+            else if (node.Data < data)
+            {
+                node.RightNode = InsertRecursion(node.RightNode, data);
+            }
+
+            return node;
+        }
+
+        /// <summary>
         /// Insert data to binary tree with iterativ method
         /// </summary>
         /// <param name="data"></param>
@@ -1381,6 +1410,108 @@ namespace DataStructures
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// Method is recursivle min element found is tree
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMinElementRecursiv(BinaryNode node)
+        {
+            // Root element is null
+            if (node == null)
+            {
+                Console.WriteLine("Tree is empty ");
+                return default(int);
+            }
+
+            // Node left node is null then serchabe min element array is this
+            if (node.LeftNode == null)
+            {
+                return node.Data;
+            }
+
+            // return recursion
+            return FindMinElementRecursiv(node.LeftNode);
+        }
+
+        /// <summary>
+        /// Fin minimum element from binaty tree(Iterative using)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMinElement(BinaryNode node)
+        {
+            // If root is null
+            if (node == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return default(int);
+            }
+
+            // While looping direction enf od the left node
+            while(node.LeftNode != null)
+            {
+                node = node.LeftNode;
+            }
+
+            // Return node data
+            return node.Data;
+        }
+
+
+        /// <summary>
+        /// Find max element in tree using Recuirsive method
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMaxElementRecursiv(BinaryNode node)
+        {
+            // Root element is null
+            if (node == null)
+            {
+                Console.WriteLine("Tree is empty ");
+                return default(int);
+            }
+
+            // Node left node is null then searchable max element array is this
+            if (node.RightNode == null)
+            {
+                return node.Data;
+            }
+
+            // return recursion
+            return FindMaxElementRecursiv(node.LeftNode);
+        }
+
+
+        /// <summary>
+        /// Method finding max element in tree(Iterative using)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMaxElement(BinaryNode node)
+        {
+            // If root is null
+            if (node == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return default(int);
+            }
+
+            // While looping direction enf od the rigth node
+            while (node.RightNode != null)
+            {
+                node = node.LeftNode;
+            }
+
+            // Return node data
+            return node.Data;
+        }
+
+
+
 
 
         /// <summary>
