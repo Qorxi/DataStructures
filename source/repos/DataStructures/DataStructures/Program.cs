@@ -216,7 +216,10 @@ namespace DataStructures
             bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 30);
 
 
-            Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
+            ///Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
+            //Console.WriteLine(bnTree.FindMaxDepth(bnTree.RootNode));
+
+            bnTree.LevelOrderTraversal(bnTree.RootNode);
 
 
 
@@ -1451,7 +1454,7 @@ namespace DataStructures
             }
 
             // While looping direction enf od the left node
-            while(node.LeftNode != null)
+            while (node.LeftNode != null)
             {
                 node = node.LeftNode;
             }
@@ -1512,6 +1515,89 @@ namespace DataStructures
 
 
 
+        /// <summary>
+        /// Private maxt depth recursive element
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        private int FindMaxDepth(BinaryNode node, int level)
+        {
+            if (node == null)
+            {
+                return level - 1;
+            }
+            level++;
+
+            return Math.Max(FindMaxDepth(node.LeftNode, level), FindMaxDepth(node.RightNode, level)) ;
+        }
+
+
+        /// <summary>
+        /// Find maxt depth element of binary tree
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMaxDepth(BinaryNode node)
+        {
+            // return max depth tree root
+            return FindMaxDepth(node, 0);
+        }
+
+
+        #region      Binary Tree Traversal
+
+        #region      Level order traversal (Breadht)
+        /// <summary>
+        /// Binary tree breadth traversal with queue
+        /// </summary>
+        /// <param name="node"></param>
+        public void LevelOrderTraversal(BinaryNode node)
+        {
+            // Node is null return traversal
+            if (node == null)
+            {
+                Console.WriteLine("Binary tree is empty");
+                return;
+            }
+
+            // create queue for level traversal tree
+            var queue = new Queue<BinaryNode>();
+
+            // Added tree to queue
+            queue.Enqueue(node);
+
+            // Queue count greate then zero
+            while(queue.Count > 0)
+            {
+                // Current element at queue
+                var current = queue.Peek();
+                // Print element data
+                Console.WriteLine(current.Data);
+                // Current left node is not nll then added queue
+                if (current.LeftNode != null)
+                {
+                    queue.Enqueue(current.LeftNode);
+                }
+                // Current right node is not null then added queue
+                if (current.RightNode != null)
+                {
+                    queue.Enqueue(current.RightNode);
+                }
+                
+                //Remove element in queue
+                queue.Dequeue();
+            }
+
+        }
+
+        #endregion   End of level order traversal
+
+        #region      Deapth Level traversal
+
+        #endregion   End of deapth Level traversal
+
+        #endregion   End of binary Tree Traversal
 
 
         /// <summary>
