@@ -1308,7 +1308,6 @@ namespace DataStructures
             {
                 node = GetNewNode(data);
             }
-
             else if (node.Data > data)
             {
                 node.LeftNode = InsertRecursion(node.LeftNode, data);
@@ -1324,7 +1323,9 @@ namespace DataStructures
         /// <summary>
         /// Insert data to binary tree with iterativ method
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">
+        /// nonegeneric data type Integer
+        /// </param>
         public void Insert(int data)
         {
             // Root node is null
