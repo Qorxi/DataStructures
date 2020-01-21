@@ -219,7 +219,9 @@ namespace DataStructures
             ///Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
             //Console.WriteLine(bnTree.FindMaxDepth(bnTree.RootNode));
 
-            bnTree.LevelOrderTraversal(bnTree.RootNode);
+            //bnTree.LevelOrderTraversal(bnTree.RootNode);
+
+            bnTree.InOrderTraversal(bnTree.RootNode);
 
 
 
@@ -1595,6 +1597,74 @@ namespace DataStructures
         #endregion   End of level order traversal
 
         #region      Deapth Level traversal
+
+        /// <summary>
+        /// PreOrder traversal in binary tree
+        /// </summary>
+        /// <param name="node">
+        /// Every node storaged integer type data
+        /// </param>
+        public void PreOrderTraversal(BinaryNode node)
+        {
+            // Node is null then return method
+            if (node == null)
+            {
+                return;
+            }
+
+            // Print element to console
+            Console.Write(node.Data + " ");
+            // Recursive left sub tree
+            PreOrderTraversal(node.LeftNode);
+            // Recursive right sub tree
+            PreOrderTraversal(node.RightNode);
+        }
+
+
+        /// <summary>
+        /// InOrder traversal sub tree 
+        /// </summary>
+        /// <param name="node">
+        /// Every node storaged integer type data
+        /// </param>
+        public void InOrderTraversal(BinaryNode node)
+        {
+            // Node is null return method or base exit condition recursive method
+            if (node == null)
+            {
+                return;
+            }
+
+            // Recursive left sub tree
+            InOrderTraversal(node.LeftNode);
+            // print to console
+            Console.Write(node.Data + " ");
+            // Recursibe right sub tree
+            InOrderTraversal(node.RightNode);
+        }
+
+
+        /// <summary>
+        /// PostOrder traversal sub tree
+        /// </summary>
+        /// <param name="node">
+        /// Every node storaged integer type data
+        /// </param>
+        public void PostOrderTraversal(BinaryNode node)
+        {
+            // Node is null return method or base exit condition recursive method
+            if (node == null)
+            {
+                return;
+            }
+           
+            // Recursive left sub tree
+            PostOrderTraversal(node.LeftNode);
+            // Recursive right sub tree
+            PostOrderTraversal(node.RightNode);
+            // Print to console
+            Console.Write(node.Data + " ");
+        }
 
         #endregion   End of deapth Level traversal
 
