@@ -1382,6 +1382,51 @@ namespace DataStructures
         }
 
 
+        public BinaryNode DeleteNode(BinaryNode node, int data)
+        {
+            // Tree is empty
+            if (node == null)
+            {
+                return node;
+            }
+            // Data is great and direction to right sub tree
+            else if(node.Data > data)
+            {
+                node.RightNode = DeleteNode(node.RightNode, data);
+            }
+            // Data is less then direction to left sub tree
+            else if (node.Data < data)
+            {
+                node.LeftNode = DeleteNode(node.LeftNode, data);
+            }
+            else // Found the element
+            {
+                // 1. Case delete element from tree, No chield
+                if (node.LeftNode == null && node.RightNode == null)
+                {
+                    node = null;
+                }
+                // 2. Case one chield
+                else if (node.LeftNode == null)
+                {
+                    node = node.RightNode;
+                }
+                else if (node.RightNode == null)
+                {
+                    node = node.LeftNode;
+                }
+                // 3. Case two chield
+                else
+                {
+                    var tempNode = GetNewNode(FindMinElementRecursiv(node.RightNode));
+                    node = tempNode;
+                    DeleteNode(node.RightNode, data);
+                }
+            }
+            return node;
+        }
+
+
         /// <summary>
         /// Search in binary tree
         /// </summary>
