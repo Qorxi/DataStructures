@@ -215,11 +215,13 @@ namespace DataStructures
             bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 25);
             bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 30);
 
+            bnTree.DeleteNode(bnTree.RootNode, 20);
+
+            //bnTree.LevelOrderTraversal(bnTree.RootNode);
+
 
             ///Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
             //Console.WriteLine(bnTree.FindMaxDepth(bnTree.RootNode));
-
-            //bnTree.LevelOrderTraversal(bnTree.RootNode);
 
             bnTree.InOrderTraversal(bnTree.RootNode);
 
@@ -1382,6 +1384,13 @@ namespace DataStructures
         }
 
 
+
+        /// <summary>
+        /// Delete node from bst
+        /// </summary>
+        /// <param name="node">selected root node</param>
+        /// <param name="data">delete node's data</param>
+        /// <returns></returns>
         public BinaryNode DeleteNode(BinaryNode node, int data)
         {
             // Tree is empty
@@ -1390,12 +1399,12 @@ namespace DataStructures
                 return node;
             }
             // Data is great and direction to right sub tree
-            else if(node.Data > data)
+            else if(node.Data < data)
             {
                 node.RightNode = DeleteNode(node.RightNode, data);
             }
             // Data is less then direction to left sub tree
-            else if (node.Data < data)
+            else if (node.Data > data)
             {
                 node.LeftNode = DeleteNode(node.LeftNode, data);
             }
@@ -1405,22 +1414,25 @@ namespace DataStructures
                 if (node.LeftNode == null && node.RightNode == null)
                 {
                     node = null;
+                    return node;
                 }
                 // 2. Case one chield
                 else if (node.LeftNode == null)
                 {
                     node = node.RightNode;
+                    return node;
                 }
                 else if (node.RightNode == null)
                 {
                     node = node.LeftNode;
+                    return node;
                 }
                 // 3. Case two chield
                 else
                 {
                     var tempNode = GetNewNode(FindMinElementRecursiv(node.RightNode));
-                    node = tempNode;
-                    DeleteNode(node.RightNode, data);
+                    node.Data = tempNode.Data;
+                    node.RightNode =  DeleteNode(node.RightNode, data);
                 }
             }
             return node;
