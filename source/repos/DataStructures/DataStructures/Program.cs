@@ -215,7 +215,7 @@ namespace DataStructures
             bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 25);
             bnTree.RootNode = bnTree.InsertRecursion(bnTree.RootNode, 30);
 
-            bnTree.DeleteNode(bnTree.RootNode, 20);
+            //bnTree.DeleteNode(bnTree.RootNode, 20);
 
             //bnTree.LevelOrderTraversal(bnTree.RootNode);
 
@@ -223,7 +223,7 @@ namespace DataStructures
             ///Console.WriteLine(bnTree.FindMinElementRecursiv(bnTree.RootNode));
             //Console.WriteLine(bnTree.FindMaxDepth(bnTree.RootNode));
 
-            bnTree.InOrderTraversal(bnTree.RootNode);
+            //bnTree.InOrderTraversal(bnTree.RootNode);
 
 
 
@@ -247,6 +247,13 @@ namespace DataStructures
             /*@@@@@@@@@@@@@ Recursive variant method example search method @@@@@@@@@@@@@*/
 
             #endregion    Binary tree
+
+            #region       Graphs  
+
+
+
+
+            #endregion    Graphs
 
             #endregion    End of Tree, traversal, graph data structures
 
@@ -1744,8 +1751,32 @@ namespace DataStructures
     }
 
 
-
     #endregion   End of Binary tree
+
+    #region     Graphs
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Introdution GRAPH @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * Graphs is for reason types, two prop:  Directed grapsh, undirected graph. Directed grahps is also name Digraph.
+     * Directed graphed The graphs directed type is mainly indicated by the arrow, while undirected graphs are versatile
+     * without water. Undirected graphs are examples of social media, while directed graphs are examples of 
+     * URL world wide web. Other features of graphs are that they are unweighed and weighed. Unweighed grafts do not 
+     * have a node length between the verters, and the opposite is between nodes, in other words, they are called so 
+     * that the edges have a length.There is a self-loop understanding where the vertices are self-assembling. When we
+     * look at the edited graphs, the sample World wide web can direct the node of the graph, ie vertice itself, that is,
+     * it can call itself. For example, ueb page is about to renew itself. In graphs, the distance between vertics is
+     * called cost. Then there is the multiedge understanding, this time it is called parallel edge, for example, we can
+     * show google map. For example, Baku is known from two different cities or the country. Edges number is 0 <E <N * (N-1)
+     * for directed graf and n * (n-1) / 2-for undirected graphs.
+     * Graph to be wrapped and unwrapped. There is the understanding of walk in the graphs, which is the beneficial 
+     * combination of the three combined vertics, called edges. Trail walkin neural heat is the way that the goat is not 
+     * repaired. It has a connected feature, if the elements are connected or interconnected, it is called connected or
+     * weekly connected. Asyslic graf is grafular to you, which is an example of time, we can give trees as unidrected graf.
+     * Undirected graph Adjacency Martix is simmetryc, matrix quadratic is element size n *(n - 1)  as O(N2) element size
+     * n2;  Directed graph edges size is n * (n-1) / 2; Quadratic matrix size
+     *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+
+
+    #endregion  Graphs
 
     #endregion   NoneLinear Data Structure [...]
 
