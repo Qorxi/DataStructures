@@ -250,6 +250,14 @@ namespace DataStructures
 
             #region       Graphs  
 
+            Graph grp = new Graph(3);
+            grp.AddEdge(0, 1);
+            grp.AddEdge(0, 2);
+
+            grp.AddEdge(1, 3);
+            grp.AddEdge(1, 2);
+
+            grp.Print();
 
 
 
@@ -1406,7 +1414,7 @@ namespace DataStructures
                 return node;
             }
             // Data is great and direction to right sub tree
-            else if(node.Data < data)
+            else if (node.Data < data)
             {
                 node.RightNode = DeleteNode(node.RightNode, data);
             }
@@ -1439,7 +1447,7 @@ namespace DataStructures
                 {
                     var tempNode = GetNewNode(FindMinElementRecursiv(node.RightNode));
                     node.Data = tempNode.Data;
-                    node.RightNode =  DeleteNode(node.RightNode, data);
+                    node.RightNode = DeleteNode(node.RightNode, data);
                 }
             }
             return node;
@@ -1596,7 +1604,7 @@ namespace DataStructures
             }
             level++;
 
-            return Math.Max(FindMaxDepth(node.LeftNode, level), FindMaxDepth(node.RightNode, level)) ;
+            return Math.Max(FindMaxDepth(node.LeftNode, level), FindMaxDepth(node.RightNode, level));
         }
 
 
@@ -1635,7 +1643,7 @@ namespace DataStructures
             queue.Enqueue(node);
 
             // Queue count greate then zero
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 // Current element at queue
                 var current = queue.Peek();
@@ -1651,7 +1659,7 @@ namespace DataStructures
                 {
                     queue.Enqueue(current.RightNode);
                 }
-                
+
                 //Remove element in queue
                 queue.Dequeue();
             }
@@ -1721,7 +1729,7 @@ namespace DataStructures
             {
                 return;
             }
-           
+
             // Recursive left sub tree
             PostOrderTraversal(node.LeftNode);
             // Recursive right sub tree
@@ -1764,7 +1772,7 @@ namespace DataStructures
      * look at the edited graphs, the sample World wide web can direct the node of the graph, ie vertice itself, that is,
      * it can call itself. For example, ueb page is about to renew itself. In graphs, the distance between vertics is
      * called cost. Then there is the multiedge understanding, this time it is called parallel edge, for example, we can
-     * show google map. For example, Baku is known from two different cities or the country. Edges number is 0 <E <N * (N-1)
+     * show google map. For example, Baku is known from two different cities or the country. Edges number is 0 < E < N * (N-1)
      * for directed graf and n * (n-1) / 2-for undirected graphs.
      * Graph to be wrapped and unwrapped. There is the understanding of walk in the graphs, which is the beneficial 
      * combination of the three combined vertics, called edges. Trail walkin neural heat is the way that the goat is not 
@@ -1773,6 +1781,87 @@ namespace DataStructures
      * Undirected graph Adjacency Martix is simmetryc, matrix quadratic is element size n *(n - 1)  as O(N2) element size
      * n2;  Directed graph edges size is n * (n-1) / 2; Quadratic matrix size
      *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+    public class Edge
+    {
+        public int VerticeSource { get; set; }
+
+        public int VerticseEndPoint { get; set; }
+
+        public Edge Next { get; set; }
+
+
+        public Edge(int Source, int Destination)
+        {
+            this.VerticeSource = Source;
+            this.VerticseEndPoint = Destination;
+        }
+
+        public Edge()
+        {
+
+        }
+    }
+
+    public class GraphEdge
+    {
+        public Edge Head { get; set; }
+
+        public GraphEdge()
+        {
+            Head = new Edge();
+        }
+    }
+
+    public class Graph
+    {
+        public int V { get; set; }
+
+        public GraphEdge[] array { get; set; }
+
+        public Graph(int Vertices)
+        {
+            this.V = Vertices;
+            array = new GraphEdge[Vertices];
+        }
+
+        public void AddEdge(int startVerticse, int endVertices)
+        {
+            var currentVertices = array[startVerticse];
+
+            if (currentVertices == null)
+            {
+                currentVertices = new GraphEdge();
+                array[startVerticse] = currentVertices;
+            }
+
+            var newEdge = new Edge(startVerticse, endVertices);
+
+            newEdge.Next = currentVertices.Head;
+            currentVertices.Head = newEdge;
+
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < V; i++)
+            {
+                if (array[i] != null)
+                {
+                    var currentVertices = array[i].Head;
+
+                    Console.WriteLine("Edge start point " + currentVertices.VerticeSource);
+                    while (currentVertices.Next != null)
+                    {
+                        Console.Write(currentVertices.VerticseEndPoint + " ");
+                        currentVertices = currentVertices.Next;
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
+
+    }
 
 
 
