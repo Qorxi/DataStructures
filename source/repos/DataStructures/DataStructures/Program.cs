@@ -267,7 +267,6 @@ namespace DataStructures
 
             #endregion    End of Data structure implement(example part) (C#) [...]
 
-
             Console.ReadKey();
         }
     }
