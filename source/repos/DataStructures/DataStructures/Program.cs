@@ -250,14 +250,14 @@ namespace DataStructures
 
             #region       Graphs  
 
-            Graph grp = new Graph(3);
-            grp.AddEdge(0, 1);
-            grp.AddEdge(0, 2);
+            //Graph grp = new Graph(3);
+            //grp.AddEdge(0, 1);
+            //grp.AddEdge(0, 2);
 
-            grp.AddEdge(1, 3);
-            grp.AddEdge(1, 2);
+            //grp.AddEdge(1, 3);
+            //grp.AddEdge(1, 2);
 
-            grp.Print();
+            //grp.Print();
 
 
 
@@ -1782,80 +1782,141 @@ namespace DataStructures
      * n2;  Directed graph edges size is n * (n-1) / 2; Quadratic matrix size
      *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
+    /// <summary>
+    /// Graph edge start and end point line name
+    /// </summary>
     public class Edge
     {
+        /// <summary>
+        /// Verticse source column Name
+        /// </summary>
         public int VerticeSource { get; set; }
 
+        /// <summary>
+        /// Verticse End point column name
+        /// </summary>
         public int VerticseEndPoint { get; set; }
 
+        /// <summary>
+        /// Next vertices list linked
+        /// </summary>
         public Edge Next { get; set; }
 
-
+        /// <summary>
+        /// Parametr constructor
+        /// </summary>
+        /// <param name="Source"></param>
+        /// <param name="Destination"></param>
         public Edge(int Source, int Destination)
         {
             this.VerticeSource = Source;
             this.VerticseEndPoint = Destination;
         }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Edge()
         {
 
         }
     }
 
+    /// <summary>
+    /// This class efficial for Grapg edge
+    /// </summary>
     public class GraphEdge
     {
+        /// <summary>
+        /// Head of linkedin list every each array node
+        /// </summary>
         public Edge Head { get; set; }
 
+        /// <summary>
+        /// Constructor default
+        /// </summary>
         public GraphEdge()
         {
             Head = new Edge();
         }
     }
 
+    /// <summary>
+    /// Graph class
+    /// </summary>
+
     public class Graph
     {
+        // Vertices count
         public int V { get; set; }
 
+        // Defaut array implementation 
         public GraphEdge[] array { get; set; }
 
+        /// <summary>
+        /// Graph class constructor for set vertices count and initializeing graphEdge
+        /// </summary>
+        /// <param name="Vertices"></param>
         public Graph(int Vertices)
         {
             this.V = Vertices;
             array = new GraphEdge[Vertices];
         }
 
+        /// <summary>
+        /// Edge list Add new node to graph
+        /// </summary>
+        /// <param name="startVerticse"></param>
+        /// <param name="endVertices"></param>
+
         public void AddEdge(int startVerticse, int endVertices)
         {
+            // Get array current vertices node
             var currentVertices = array[startVerticse];
 
+            // If is null then new graphEdge class
             if (currentVertices == null)
             {
+                // new instance
                 currentVertices = new GraphEdge();
+                // set Array element new instance edge
                 array[startVerticse] = currentVertices;
             }
 
+            // Create new node for added vertices and edge
             var newEdge = new Edge(startVerticse, endVertices);
 
+            /// Linked list adding head element Big(O(n)) case
             newEdge.Next = currentVertices.Head;
             currentVertices.Head = newEdge;
 
         }
 
+        /// <summary>
+        /// Graph adjecency list print model
+        /// </summary>
+
         public void Print()
         {
+
+            // Looping true
             for (int i = 0; i < V; i++)
             {
+                // If current node is not null
                 if (array[i] != null)
                 {
+                    // Current vertices head node
                     var currentVertices = array[i].Head;
 
+                    // Print vertices value
                     Console.WriteLine("Edge start point " + currentVertices.VerticeSource);
+                    // While looping true Next element is not null then console write element
                     while (currentVertices.Next != null)
                     {
                         Console.Write(currentVertices.VerticseEndPoint + " ");
                         currentVertices = currentVertices.Next;
                     }
+                    // And next line print added
                     Console.WriteLine();
                 }
             }
