@@ -1256,8 +1256,6 @@ namespace DataStructures
 
     #endregion   End of Linear data structures implamenetation part  [...]
 
-    #endregion   End of Data structure implement(implementattions part) (C#)[...]
-
     #region      NoneLinear Data Structure [...]
 
     #region      Binary Tree
@@ -1928,6 +1926,10 @@ namespace DataStructures
     #endregion  Graphs
 
     #endregion   NoneLinear Data Structure [...]
+
+    #endregion   End of Data structure implement(implementattions part) (C#)[...]
+
+
 
 
 }
